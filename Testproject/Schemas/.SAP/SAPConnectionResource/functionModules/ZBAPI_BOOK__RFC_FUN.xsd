@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xsd:schema xmlns:r3="http://www.tibco.com/xmlns/sapscalar/2015/05" xmlns:tns="http://www.tibco.com/xmlns/sap/SAPConnectionResource/ZBAPI_BOOK__RFC_FUN" elementFormDefault="unqualified" targetNamespace="http://www.tibco.com/xmlns/sap/SAPConnectionResource/ZBAPI_BOOK__RFC_FUN" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <xsd:import namespace="http://www.tibco.com/xmlns/sapscalar/2015/05" schemaLocation="/Schemas/.SAP/SAPSchema.xsd"/>
+    <xsd:element name="RfcRequest" type="tns:ZBAPI_BOOK__RFC_FUN_RequestParam"/>
+    <xsd:complexType name="ZBAPI_BOOK__RFC_FUN_RequestParam">
+        <xsd:sequence>
+            <xsd:element minOccurs="1" name="F_BOOK_ID" r3:abapType="N" r3:document="Book ID data element" r3:javaType="java.lang.String" r3:jcoType="6">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="5"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="F_BOOK_DB" type="tns:sequence_lsqb_ZBAPI_BOOK_STRUCT_rsqb_"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RfcResponse" type="tns:ZBAPI_BOOK__RFC_FUN_ResponseParam"/>
+    <xsd:complexType name="ZBAPI_BOOK__RFC_FUN_ResponseParam">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="RETURN" type="tns:BAPIRETURN"/>
+            <xsd:element minOccurs="0" name="F_BOOK_DB" type="tns:sequence_lsqb_ZBAPI_BOOK_STRUCT_rsqb_"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="SAPSystemException" type="tns:ZBAPI_BOOK__RFC_FUN_FaultParam"/>
+    <xsd:complexType name="ZBAPI_BOOK__RFC_FUN_FaultParam">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="OTHERS" type="tns:RFCException"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="sequence_lsqb_ZBAPI_BOOK_STRUCT_rsqb_">
+        <xsd:sequence>
+            <xsd:element form="unqualified" maxOccurs="unbounded" minOccurs="0" name="item" type="tns:ZBAPI_BOOK_STRUCT"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ZBAPI_BOOK_STRUCT">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="BOOK_ID" nillable="true" r3:abapType="N" r3:document="Book ID data element" r3:javaType="java.lang.String" r3:jcoType="6" r3:offset="0">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="5"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="BOOK_NAME" nillable="true" r3:abapType="C" r3:document="Book Name Data Element" r3:javaType="java.lang.String" r3:jcoType="0" r3:offset="10">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="10"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="BOOK_AUTHOR" nillable="true" r3:abapType="C" r3:document="Book Author Name data Element" r3:javaType="java.lang.String" r3:jcoType="0" r3:offset="30">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="10"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="BOOK_PRICE" nillable="true" r3:abapType="N" r3:document="Book Price data Element" r3:javaType="java.lang.String" r3:jcoType="6" r3:offset="50">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="3"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="BIRTH_DATE" nillable="true" r3:abapType="D" r3:document="BIRTH DATE" r3:javaType="javax.xml.datatype.XMLGregorianCalendar" r3:jcoType="1" r3:offset="56">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="8"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="COLOR" nillable="true" r3:abapType="C" r3:document="COLOR" r3:javaType="java.lang.String" r3:jcoType="0" r3:offset="72">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="2"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="BAPIRETURN">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="TYPE" nillable="true" r3:abapType="C" r3:document="Message type: S Success, E Error, W Warning, I Info, A Abort" r3:javaType="java.lang.String" r3:jcoType="0" r3:offset="0">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="CODE" nillable="true" r3:abapType="C" r3:document="Message code" r3:javaType="java.lang.String" r3:jcoType="0" r3:offset="2">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="5"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="MESSAGE" nillable="true" r3:abapType="C" r3:document="Message Text" r3:javaType="java.lang.String" r3:jcoType="0" r3:offset="12">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="220"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="LOG_NO" nillable="true" r3:abapType="C" r3:document="Application log: log number" r3:javaType="java.lang.String" r3:jcoType="0" r3:offset="452">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="20"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="LOG_MSG_NO" nillable="true" r3:abapType="N" r3:document="Application log: Internal message serial number" r3:javaType="java.lang.String" r3:jcoType="6" r3:offset="492">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="6"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="MESSAGE_V1" nillable="true" r3:abapType="C" r3:document="Message Variable" r3:javaType="java.lang.String" r3:jcoType="0" r3:offset="504">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="50"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="MESSAGE_V2" nillable="true" r3:abapType="C" r3:document="Message Variable" r3:javaType="java.lang.String" r3:jcoType="0" r3:offset="604">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="50"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="MESSAGE_V3" nillable="true" r3:abapType="C" r3:document="Message Variable" r3:javaType="java.lang.String" r3:jcoType="0" r3:offset="704">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="50"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="MESSAGE_V4" nillable="true" r3:abapType="C" r3:document="Message Variable" r3:javaType="java.lang.String" r3:jcoType="0" r3:offset="804">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="50"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="RFCException">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="msg" nillable="true" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="msgCode" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>

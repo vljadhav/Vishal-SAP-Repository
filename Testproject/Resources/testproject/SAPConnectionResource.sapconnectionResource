@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jndi:namedResource xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jndi="http://xsd.tns.tibco.com/amf/models/sharedresource/jndi" xmlns:sapconnection="http://ns.tibco.com/bw/sharedresource/sapconnection" xmi:id="_5fM4kDnKEemnytqRCNRgsQ" name="testproject.SAPConnectionResource" type="sapconnection:SAPConnection">
+  <jndi:configuration xsi:type="sapconnection:SAPConnection" xmi:id="_5gw-0DnKEemnytqRCNRgsQ" clientConnName="testproject.SAPConnectionResource.ClientConnection" connType="Dedicated Application Server" language="English" snc_Bsso="0" snc_SSOrecv="" snc_x509="" s_serverConnName="testproject.SAPConnectionResource.ServerConnection" s_connType="Default" sapConnAlias="ac445a06-dc9e-47ad-a257-af8393e7c69c" languageCode="E">
+    <substitutionBindings xmi:id="_5g46oDnKEemnytqRCNRgsQ" template="appServer" propName="SAPAppServer"/>
+    <substitutionBindings xmi:id="_5g46oTnKEemnytqRCNRgsQ" template="systemNumber" propName="SAPSystemNumber"/>
+    <substitutionBindings xmi:id="_5g46ojnKEemnytqRCNRgsQ" template="client" propName="SAPClient"/>
+    <substitutionBindings xmi:id="_5g46oznKEemnytqRCNRgsQ" template="userName" propName="SAPUserName"/>
+    <substitutionBindings xmi:id="_5g46pDnKEemnytqRCNRgsQ" template="password" propName="SAPPassword"/>
+    <substitutionBindings xmi:id="_5g46pTnKEemnytqRCNRgsQ" template="systemName" propName="SAPSystemName"/>
+    <substitutionBindings xmi:id="_5g46pjnKEemnytqRCNRgsQ" template="msgServer" propName="SAPMsgServer"/>
+    <substitutionBindings xmi:id="_5g46pznKEemnytqRCNRgsQ" template="groupName" propName="SAPLogonGroup"/>
+    <substitutionBindings xmi:id="_5g46qDnKEemnytqRCNRgsQ" template="snc_mode" propName="SAPSncMode"/>
+    <substitutionBindings xmi:id="_5g46qTnKEemnytqRCNRgsQ" template="snc_partnername" propName="SAPSncPartnername"/>
+    <substitutionBindings xmi:id="_5g46qjnKEemnytqRCNRgsQ" template="snc_qop" propName="SAPSncQop"/>
+    <substitutionBindings xmi:id="_5g46qznKEemnytqRCNRgsQ" template="snc_lib" propName="SAPSncLib"/>
+    <substitutionBindings xmi:id="_5g46rDnKEemnytqRCNRgsQ" template="s_programID" propName="SAPProgramID"/>
+    <substitutionBindings xmi:id="_5g46rTnKEemnytqRCNRgsQ" template="s_gatewayService" propName="SAPGatewayService"/>
+    <substitutionBindings xmi:id="_5g46rjnKEemnytqRCNRgsQ" template="s_gatewayHost" propName="SAPGatewayHost"/>
+    <substitutionBindings xmi:id="_5g46rznKEemnytqRCNRgsQ" template="s_snc_mode" propName="SAPSncMode"/>
+    <substitutionBindings xmi:id="_5g46sDnKEemnytqRCNRgsQ" template="s_snc_qop" propName="SAPSncQop"/>
+    <substitutionBindings xmi:id="_5g46sTnKEemnytqRCNRgsQ" template="s_snc_myname" propName="SAPSncMyname"/>
+    <substitutionBindings xmi:id="_5g46sjnKEemnytqRCNRgsQ" template="s_snc_lib" propName="SAPSncLib"/>
+  </jndi:configuration>
+</jndi:namedResource>
