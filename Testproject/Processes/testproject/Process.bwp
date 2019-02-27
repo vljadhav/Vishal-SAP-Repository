@@ -178,13 +178,13 @@
         <schema elementFormDefault="unqualified"
             targetNamespace="http://www.tibco.com/namespaces/tnt/plugins/invokerequestresponse+0f957236-cb7b-4a6c-a9ff-1d2b267cadc9+Input"
             xmlns="http://www.w3.org/2001/XMLSchema"
-            xmlns:Q1="http://www.tibco.com/xmlns/sap/SAPConnectionResource/ZBAPI_BOOK__RFC_FUN" xmlns:tns="http://www.tibco.com/namespaces/tnt/plugins/invokerequestresponse+0f957236-cb7b-4a6c-a9ff-1d2b267cadc9+Input">
-            <import namespace="http://www.tibco.com/xmlns/sap/SAPConnectionResource/ZBAPI_BOOK__RFC_FUN"/>
+            xmlns:Q1="http://www.tibco.com/xmlns/sap/SAPConnectionResource/ZBAPI_BP_CREATE" xmlns:tns="http://www.tibco.com/namespaces/tnt/plugins/invokerequestresponse+0f957236-cb7b-4a6c-a9ff-1d2b267cadc9+Input">
+            <import namespace="http://www.tibco.com/xmlns/sap/SAPConnectionResource/ZBAPI_BP_CREATE"/>
             <complexType name="RequestInputType">
                 <sequence>
                     <element minOccurs="0" name="sessionID" type="string"/>
                     <element minOccurs="0" name="timeout" type="long"/>
-                    <element maxOccurs="1" ref="Q1:RfcRequest"/>
+                    <element maxOccurs="1" minOccurs="0" ref="Q1:RfcRequest"/>
                 </sequence>
             </complexType>
             <complexType name="ProcessStarterOutput">
@@ -271,113 +271,219 @@
                 </choice>
             </complexType>
         </schema>
+        <xs:schema attributeFormDefault="unqualified"
+            elementFormDefault="qualified"
+            targetNamespace="http://tns.tibco.com/bw/activity/timer/xsd/output"
+            xmlns:tns="http://tns.tibco.com/bw/activity/timer/xsd/output" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:complexType name="TimerOutputSchemaType">
+                <xs:sequence>
+                    <xs:element form="unqualified" name="Now" type="xs:long"/>
+                    <xs:element form="unqualified" name="Hour" type="xs:int"/>
+                    <xs:element form="unqualified" name="Minute" type="xs:int"/>
+                    <xs:element form="unqualified" name="Second" type="xs:int"/>
+                    <xs:element form="unqualified" name="Week" type="xs:int"/>
+                    <xs:element form="unqualified" name="Month" type="xs:int"/>
+                    <xs:element form="unqualified" name="Year" type="xs:int"/>
+                    <xs:element form="unqualified" name="Date" type="xs:date"/>
+                    <xs:element form="unqualified" name="Time" type="xs:string"/>
+                    <xs:element form="unqualified" name="DayOfMonth" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="TimerOutputSchema" type="tns:TimerOutputSchemaType"/>
+        </xs:schema>
         <xsd:schema elementFormDefault="unqualified"
-            targetNamespace="http://www.tibco.com/xmlns/sap/SAPConnectionResource/ZBAPI_BOOK__RFC_FUN"
+            targetNamespace="http://www.tibco.com/xmlns/sap/SAPConnectionResource/ZBAPI_BP_CREATE"
             xmlns:r3="http://www.tibco.com/xmlns/sapscalar/2015/05"
-            xmlns:tns="http://www.tibco.com/xmlns/sap/SAPConnectionResource/ZBAPI_BOOK__RFC_FUN" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            xmlns:tns="http://www.tibco.com/xmlns/sap/SAPConnectionResource/ZBAPI_BP_CREATE" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
             <xsd:import
                 namespace="http://www.tibco.com/xmlns/sapscalar/2015/05" schemaLocation="/Schemas/.SAP/SAPSchema.xsd"/>
-            <xsd:element name="RfcRequest" type="tns:ZBAPI_BOOK__RFC_FUN_RequestParam"/>
-            <xsd:complexType name="ZBAPI_BOOK__RFC_FUN_RequestParam">
+            <xsd:element name="RfcRequest" type="tns:ZBAPI_BP_CREATE_RequestParam"/>
+            <xsd:complexType name="ZBAPI_BP_CREATE_RequestParam">
                 <xsd:sequence>
-                    <xsd:element minOccurs="1" name="F_BOOK_ID"
-                        r3:abapType="N"
-                        r3:document="Book ID data element"
-                        r3:javaType="java.lang.String" r3:jcoType="6">
+                    <xsd:element minOccurs="0" name="ADDRESS"
+                        r3:abapType="C" r3:document="Street"
+                        r3:javaType="java.lang.String" r3:jcoType="0">
                         <xsd:simpleType>
                             <xsd:restriction base="xsd:string">
-                                <xsd:maxLength value="5"/>
+                                <xsd:maxLength value="60"/>
                             </xsd:restriction>
                         </xsd:simpleType>
                     </xsd:element>
-                    <xsd:element minOccurs="0" name="F_BOOK_DB" type="tns:sequence_lsqb_ZBAPI_BOOK_STRUCT_rsqb_"/>
-                </xsd:sequence>
-            </xsd:complexType>
-            <xsd:element name="RfcResponse" type="tns:ZBAPI_BOOK__RFC_FUN_ResponseParam"/>
-            <xsd:complexType name="ZBAPI_BOOK__RFC_FUN_ResponseParam">
-                <xsd:sequence>
-                    <xsd:element minOccurs="0" name="RETURN" type="tns:BAPIRETURN"/>
-                    <xsd:element minOccurs="0" name="F_BOOK_DB" type="tns:sequence_lsqb_ZBAPI_BOOK_STRUCT_rsqb_"/>
-                </xsd:sequence>
-            </xsd:complexType>
-            <xsd:element name="SAPSystemException" type="tns:ZBAPI_BOOK__RFC_FUN_FaultParam"/>
-            <xsd:complexType name="ZBAPI_BOOK__RFC_FUN_FaultParam">
-                <xsd:sequence>
-                    <xsd:element minOccurs="0" name="OTHERS" type="tns:RFCException"/>
-                </xsd:sequence>
-            </xsd:complexType>
-            <xsd:complexType name="sequence_lsqb_ZBAPI_BOOK_STRUCT_rsqb_">
-                <xsd:sequence>
-                    <xsd:element form="unqualified"
-                        maxOccurs="unbounded" minOccurs="0" name="item" type="tns:ZBAPI_BOOK_STRUCT"/>
-                </xsd:sequence>
-            </xsd:complexType>
-            <xsd:complexType name="ZBAPI_BOOK_STRUCT">
-                <xsd:sequence>
-                    <xsd:element minOccurs="0" name="BOOK_ID"
-                        nillable="true" r3:abapType="N"
-                        r3:document="Book ID data element"
-                        r3:javaType="java.lang.String" r3:jcoType="6" r3:offset="0">
+                    <xsd:element minOccurs="0" name="BPTYPE"
+                        r3:abapType="C"
+                        r3:document="Business partner category"
+                        r3:javaType="java.lang.String" r3:jcoType="0">
                         <xsd:simpleType>
                             <xsd:restriction base="xsd:string">
-                                <xsd:maxLength value="5"/>
+                                <xsd:maxLength value="1"/>
                             </xsd:restriction>
                         </xsd:simpleType>
                     </xsd:element>
-                    <xsd:element minOccurs="0" name="BOOK_NAME"
-                        nillable="true" r3:abapType="C"
-                        r3:document="Book Name Data Element"
-                        r3:javaType="java.lang.String" r3:jcoType="0" r3:offset="10">
+                    <xsd:element minOccurs="0" name="CITY"
+                        r3:abapType="C" r3:document="City"
+                        r3:javaType="java.lang.String" r3:jcoType="0">
                         <xsd:simpleType>
                             <xsd:restriction base="xsd:string">
-                                <xsd:maxLength value="10"/>
+                                <xsd:maxLength value="40"/>
                             </xsd:restriction>
                         </xsd:simpleType>
                     </xsd:element>
-                    <xsd:element minOccurs="0" name="BOOK_AUTHOR"
-                        nillable="true" r3:abapType="C"
-                        r3:document="Book Author Name data Element"
-                        r3:javaType="java.lang.String" r3:jcoType="0" r3:offset="30">
+                    <xsd:element minOccurs="0" name="COMPANY_NAME"
+                        r3:abapType="C"
+                        r3:document="Name 1 of organization"
+                        r3:javaType="java.lang.String" r3:jcoType="0">
                         <xsd:simpleType>
                             <xsd:restriction base="xsd:string">
-                                <xsd:maxLength value="10"/>
+                                <xsd:maxLength value="40"/>
                             </xsd:restriction>
                         </xsd:simpleType>
                     </xsd:element>
-                    <xsd:element minOccurs="0" name="BOOK_PRICE"
-                        nillable="true" r3:abapType="N"
-                        r3:document="Book Price data Element"
-                        r3:javaType="java.lang.String" r3:jcoType="6" r3:offset="50">
+                    <xsd:element minOccurs="0" name="COUNTRY"
+                        r3:abapType="C" r3:document="Country Key"
+                        r3:javaType="java.lang.String" r3:jcoType="0">
                         <xsd:simpleType>
                             <xsd:restriction base="xsd:string">
                                 <xsd:maxLength value="3"/>
                             </xsd:restriction>
                         </xsd:simpleType>
                     </xsd:element>
-                    <xsd:element minOccurs="0" name="BIRTH_DATE"
-                        nillable="true" r3:abapType="D"
-                        r3:document="BIRTH DATE"
-                        r3:javaType="javax.xml.datatype.XMLGregorianCalendar"
-                        r3:jcoType="1" r3:offset="56">
+                    <xsd:element minOccurs="0" name="EMAIL"
+                        r3:abapType="C" r3:document="E-Mail Address"
+                        r3:javaType="java.lang.String" r3:jcoType="0">
                         <xsd:simpleType>
                             <xsd:restriction base="xsd:string">
-                                <xsd:maxLength value="8"/>
+                                <xsd:maxLength value="241"/>
                             </xsd:restriction>
                         </xsd:simpleType>
                     </xsd:element>
-                    <xsd:element minOccurs="0" name="COLOR"
-                        nillable="true" r3:abapType="C"
-                        r3:document="COLOR"
-                        r3:javaType="java.lang.String" r3:jcoType="0" r3:offset="72">
+                    <xsd:element minOccurs="0" name="FIRST_NAME"
+                        r3:abapType="C"
+                        r3:document="First Name of Business Partner (Person)"
+                        r3:javaType="java.lang.String" r3:jcoType="0">
                         <xsd:simpleType>
                             <xsd:restriction base="xsd:string">
-                                <xsd:maxLength value="2"/>
+                                <xsd:maxLength value="40"/>
                             </xsd:restriction>
                         </xsd:simpleType>
                     </xsd:element>
+                    <xsd:element minOccurs="0" name="HOUSE_NO"
+                        r3:abapType="C" r3:document="House Number"
+                        r3:javaType="java.lang.String" r3:jcoType="0">
+                        <xsd:simpleType>
+                            <xsd:restriction base="xsd:string">
+                                <xsd:maxLength value="10"/>
+                            </xsd:restriction>
+                        </xsd:simpleType>
+                    </xsd:element>
+                    <xsd:element minOccurs="0" name="LANGUAGE"
+                        r3:abapType="C" r3:document="Language Key"
+                        r3:javaType="java.lang.String" r3:jcoType="0">
+                        <xsd:simpleType>
+                            <xsd:restriction base="xsd:string">
+                                <xsd:maxLength value="1"/>
+                            </xsd:restriction>
+                        </xsd:simpleType>
+                    </xsd:element>
+                    <xsd:element minOccurs="0" name="LAST_NAME"
+                        r3:abapType="C"
+                        r3:document="Last Name of Business Partner (Person)"
+                        r3:javaType="java.lang.String" r3:jcoType="0">
+                        <xsd:simpleType>
+                            <xsd:restriction base="xsd:string">
+                                <xsd:maxLength value="40"/>
+                            </xsd:restriction>
+                        </xsd:simpleType>
+                    </xsd:element>
+                    <xsd:element minOccurs="0" name="PHONE"
+                        r3:abapType="C"
+                        r3:document="First telephone no.: dialling code+number"
+                        r3:javaType="java.lang.String" r3:jcoType="0">
+                        <xsd:simpleType>
+                            <xsd:restriction base="xsd:string">
+                                <xsd:maxLength value="30"/>
+                            </xsd:restriction>
+                        </xsd:simpleType>
+                    </xsd:element>
+                    <xsd:element minOccurs="0" name="SALUTATION"
+                        r3:abapType="C"
+                        r3:document="Form-of-Address Key"
+                        r3:javaType="java.lang.String" r3:jcoType="0">
+                        <xsd:simpleType>
+                            <xsd:restriction base="xsd:string">
+                                <xsd:maxLength value="4"/>
+                            </xsd:restriction>
+                        </xsd:simpleType>
+                    </xsd:element>
+                    <xsd:element minOccurs="0" name="SEARCH_TERM"
+                        r3:abapType="C"
+                        r3:document="Search term 1 for business partner"
+                        r3:javaType="java.lang.String" r3:jcoType="0">
+                        <xsd:simpleType>
+                            <xsd:restriction base="xsd:string">
+                                <xsd:maxLength value="20"/>
+                            </xsd:restriction>
+                        </xsd:simpleType>
+                    </xsd:element>
+                    <xsd:element minOccurs="0" name="STATE"
+                        r3:abapType="C"
+                        r3:document="Region (State, Province, County)"
+                        r3:javaType="java.lang.String" r3:jcoType="0">
+                        <xsd:simpleType>
+                            <xsd:restriction base="xsd:string">
+                                <xsd:maxLength value="3"/>
+                            </xsd:restriction>
+                        </xsd:simpleType>
+                    </xsd:element>
+                    <xsd:element minOccurs="0" name="ZIP_CODE"
+                        r3:abapType="C" r3:document="City postal code"
+                        r3:javaType="java.lang.String" r3:jcoType="0">
+                        <xsd:simpleType>
+                            <xsd:restriction base="xsd:string">
+                                <xsd:maxLength value="10"/>
+                            </xsd:restriction>
+                        </xsd:simpleType>
+                    </xsd:element>
+                    <xsd:element minOccurs="0" name="RETURN" type="tns:sequence_lsqb_BAPIRET2_rsqb_"/>
                 </xsd:sequence>
             </xsd:complexType>
-            <xsd:complexType name="BAPIRETURN">
+            <xsd:element name="RfcResponse" type="tns:ZBAPI_BP_CREATE_ResponseParam"/>
+            <xsd:complexType name="ZBAPI_BP_CREATE_ResponseParam">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" name="BUSINESSPARTNER"
+                        r3:abapType="C"
+                        r3:document="Business Partner ID"
+                        r3:javaType="java.lang.String" r3:jcoType="0">
+                        <xsd:simpleType>
+                            <xsd:restriction base="xsd:string">
+                                <xsd:maxLength value="10"/>
+                            </xsd:restriction>
+                        </xsd:simpleType>
+                    </xsd:element>
+                    <xsd:element minOccurs="0" name="MESSAGE"
+                        r3:abapType="C" r3:document="Char255"
+                        r3:javaType="java.lang.String" r3:jcoType="0">
+                        <xsd:simpleType>
+                            <xsd:restriction base="xsd:string">
+                                <xsd:maxLength value="255"/>
+                            </xsd:restriction>
+                        </xsd:simpleType>
+                    </xsd:element>
+                    <xsd:element minOccurs="0" name="RETURN" type="tns:sequence_lsqb_BAPIRET2_rsqb_"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="SAPSystemException" type="tns:ZBAPI_BP_CREATE_FaultParam"/>
+            <xsd:complexType name="ZBAPI_BP_CREATE_FaultParam">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" name="OTHERS" type="tns:RFCException"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="sequence_lsqb_BAPIRET2_rsqb_">
+                <xsd:sequence>
+                    <xsd:element form="unqualified"
+                        maxOccurs="unbounded" minOccurs="0" name="item" type="tns:BAPIRET2"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="BAPIRET2">
                 <xsd:sequence>
                     <xsd:element minOccurs="0" name="TYPE"
                         nillable="true" r3:abapType="C"
@@ -389,20 +495,29 @@
                             </xsd:restriction>
                         </xsd:simpleType>
                     </xsd:element>
-                    <xsd:element minOccurs="0" name="CODE"
-                        nillable="true" r3:abapType="C"
-                        r3:document="Message code"
+                    <xsd:element minOccurs="0" name="ID" nillable="true"
+                        r3:abapType="C" r3:document="Message Class"
                         r3:javaType="java.lang.String" r3:jcoType="0" r3:offset="2">
                         <xsd:simpleType>
                             <xsd:restriction base="xsd:string">
-                                <xsd:maxLength value="5"/>
+                                <xsd:maxLength value="20"/>
+                            </xsd:restriction>
+                        </xsd:simpleType>
+                    </xsd:element>
+                    <xsd:element minOccurs="0" name="NUMBER"
+                        nillable="true" r3:abapType="N"
+                        r3:document="Message Number"
+                        r3:javaType="java.lang.String" r3:jcoType="6" r3:offset="42">
+                        <xsd:simpleType>
+                            <xsd:restriction base="xsd:string">
+                                <xsd:maxLength value="3"/>
                             </xsd:restriction>
                         </xsd:simpleType>
                     </xsd:element>
                     <xsd:element minOccurs="0" name="MESSAGE"
                         nillable="true" r3:abapType="C"
                         r3:document="Message Text"
-                        r3:javaType="java.lang.String" r3:jcoType="0" r3:offset="12">
+                        r3:javaType="java.lang.String" r3:jcoType="0" r3:offset="48">
                         <xsd:simpleType>
                             <xsd:restriction base="xsd:string">
                                 <xsd:maxLength value="220"/>
@@ -412,7 +527,7 @@
                     <xsd:element minOccurs="0" name="LOG_NO"
                         nillable="true" r3:abapType="C"
                         r3:document="Application log: log number"
-                        r3:javaType="java.lang.String" r3:jcoType="0" r3:offset="452">
+                        r3:javaType="java.lang.String" r3:jcoType="0" r3:offset="488">
                         <xsd:simpleType>
                             <xsd:restriction base="xsd:string">
                                 <xsd:maxLength value="20"/>
@@ -422,7 +537,7 @@
                     <xsd:element minOccurs="0" name="LOG_MSG_NO"
                         nillable="true" r3:abapType="N"
                         r3:document="Application log: Internal message serial number"
-                        r3:javaType="java.lang.String" r3:jcoType="6" r3:offset="492">
+                        r3:javaType="java.lang.String" r3:jcoType="6" r3:offset="528">
                         <xsd:simpleType>
                             <xsd:restriction base="xsd:string">
                                 <xsd:maxLength value="6"/>
@@ -432,7 +547,7 @@
                     <xsd:element minOccurs="0" name="MESSAGE_V1"
                         nillable="true" r3:abapType="C"
                         r3:document="Message Variable"
-                        r3:javaType="java.lang.String" r3:jcoType="0" r3:offset="504">
+                        r3:javaType="java.lang.String" r3:jcoType="0" r3:offset="540">
                         <xsd:simpleType>
                             <xsd:restriction base="xsd:string">
                                 <xsd:maxLength value="50"/>
@@ -442,7 +557,7 @@
                     <xsd:element minOccurs="0" name="MESSAGE_V2"
                         nillable="true" r3:abapType="C"
                         r3:document="Message Variable"
-                        r3:javaType="java.lang.String" r3:jcoType="0" r3:offset="604">
+                        r3:javaType="java.lang.String" r3:jcoType="0" r3:offset="640">
                         <xsd:simpleType>
                             <xsd:restriction base="xsd:string">
                                 <xsd:maxLength value="50"/>
@@ -452,7 +567,7 @@
                     <xsd:element minOccurs="0" name="MESSAGE_V3"
                         nillable="true" r3:abapType="C"
                         r3:document="Message Variable"
-                        r3:javaType="java.lang.String" r3:jcoType="0" r3:offset="704">
+                        r3:javaType="java.lang.String" r3:jcoType="0" r3:offset="740">
                         <xsd:simpleType>
                             <xsd:restriction base="xsd:string">
                                 <xsd:maxLength value="50"/>
@@ -462,10 +577,48 @@
                     <xsd:element minOccurs="0" name="MESSAGE_V4"
                         nillable="true" r3:abapType="C"
                         r3:document="Message Variable"
-                        r3:javaType="java.lang.String" r3:jcoType="0" r3:offset="804">
+                        r3:javaType="java.lang.String" r3:jcoType="0" r3:offset="840">
                         <xsd:simpleType>
                             <xsd:restriction base="xsd:string">
                                 <xsd:maxLength value="50"/>
+                            </xsd:restriction>
+                        </xsd:simpleType>
+                    </xsd:element>
+                    <xsd:element minOccurs="0" name="PARAMETER"
+                        nillable="true" r3:abapType="C"
+                        r3:document="Parameter Name"
+                        r3:javaType="java.lang.String" r3:jcoType="0" r3:offset="940">
+                        <xsd:simpleType>
+                            <xsd:restriction base="xsd:string">
+                                <xsd:maxLength value="32"/>
+                            </xsd:restriction>
+                        </xsd:simpleType>
+                    </xsd:element>
+                    <xsd:element minOccurs="0" name="ROW"
+                        nillable="true" r3:abapType="I"
+                        r3:document="Lines in parameter"
+                        r3:javaType="int" r3:jcoType="8" r3:offset="1004">
+                        <xsd:simpleType>
+                            <xsd:restriction base="xsd:int"/>
+                        </xsd:simpleType>
+                    </xsd:element>
+                    <xsd:element minOccurs="0" name="FIELD"
+                        nillable="true" r3:abapType="C"
+                        r3:document="Field in parameter"
+                        r3:javaType="java.lang.String" r3:jcoType="0" r3:offset="1008">
+                        <xsd:simpleType>
+                            <xsd:restriction base="xsd:string">
+                                <xsd:maxLength value="30"/>
+                            </xsd:restriction>
+                        </xsd:simpleType>
+                    </xsd:element>
+                    <xsd:element minOccurs="0" name="SYSTEM"
+                        nillable="true" r3:abapType="C"
+                        r3:document="Logical system from which message originates"
+                        r3:javaType="java.lang.String" r3:jcoType="0" r3:offset="1068">
+                        <xsd:simpleType>
+                            <xsd:restriction base="xsd:string">
+                                <xsd:maxLength value="10"/>
                             </xsd:restriction>
                         </xsd:simpleType>
                     </xsd:element>
@@ -483,8 +636,8 @@
         <schema elementFormDefault="unqualified"
             targetNamespace="http://www.tibco.com/namespaces/tnt/plugins/invokerequestresponse+0f957236-cb7b-4a6c-a9ff-1d2b267cadc9+Output"
             xmlns="http://www.w3.org/2001/XMLSchema"
-            xmlns:Q1="http://www.tibco.com/xmlns/sap/SAPConnectionResource/ZBAPI_BOOK__RFC_FUN" xmlns:tns="http://www.tibco.com/namespaces/tnt/plugins/invokerequestresponse+0f957236-cb7b-4a6c-a9ff-1d2b267cadc9+Output">
-            <import namespace="http://www.tibco.com/xmlns/sap/SAPConnectionResource/ZBAPI_BOOK__RFC_FUN"/>
+            xmlns:Q1="http://www.tibco.com/xmlns/sap/SAPConnectionResource/ZBAPI_BP_CREATE" xmlns:tns="http://www.tibco.com/namespaces/tnt/plugins/invokerequestresponse+0f957236-cb7b-4a6c-a9ff-1d2b267cadc9+Output">
+            <import namespace="http://www.tibco.com/xmlns/sap/SAPConnectionResource/ZBAPI_BP_CREATE"/>
             <complexType name="RequestInputType">
                 <sequence>
                     <element minOccurs="0" name="sessionID" type="string"/>
@@ -524,7 +677,7 @@
                 <sequence>
                     <element minOccurs="0" name="sessionID" type="string"/>
                     <element minOccurs="0" name="CPIC_ID" type="string"/>
-                    <element maxOccurs="1" ref="Q1:RfcResponse"/>
+                    <element maxOccurs="1" minOccurs="0" ref="Q1:RfcResponse"/>
                 </sequence>
             </complexType>
             <element name="RequestOutputType" type="tns:RequestOutputType"/>
@@ -548,26 +701,6 @@
             </complexType>
             <element name="empty" type="anySimpleType"/>
         </schema>
-        <xs:schema attributeFormDefault="unqualified"
-            elementFormDefault="qualified"
-            targetNamespace="http://tns.tibco.com/bw/activity/timer/xsd/output"
-            xmlns:tns="http://tns.tibco.com/bw/activity/timer/xsd/output" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-            <xs:complexType name="TimerOutputSchemaType">
-                <xs:sequence>
-                    <xs:element form="unqualified" name="Now" type="xs:long"/>
-                    <xs:element form="unqualified" name="Hour" type="xs:int"/>
-                    <xs:element form="unqualified" name="Minute" type="xs:int"/>
-                    <xs:element form="unqualified" name="Second" type="xs:int"/>
-                    <xs:element form="unqualified" name="Week" type="xs:int"/>
-                    <xs:element form="unqualified" name="Month" type="xs:int"/>
-                    <xs:element form="unqualified" name="Year" type="xs:int"/>
-                    <xs:element form="unqualified" name="Date" type="xs:date"/>
-                    <xs:element form="unqualified" name="Time" type="xs:string"/>
-                    <xs:element form="unqualified" name="DayOfMonth" type="xs:int"/>
-                </xs:sequence>
-            </xs:complexType>
-            <xs:element name="TimerOutputSchema" type="tns:TimerOutputSchemaType"/>
-        </xs:schema>
     </tibex:Types>
     <tibex:ProcessInfo callable="false" createdBy="vijadhav"
         createdOn="Tue Feb 26 19:01:30 IST 2019" description=""
@@ -778,7 +911,7 @@
                     </bpws:targets>
                     <tibex:inputBindings>
                         <tibex:inputBinding
-                            expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.tibco.com/namespaces/tnt/plugins/invokerequestresponse+0f957236-cb7b-4a6c-a9ff-1d2b267cadc9+Input&quot; xmlns:tns1=&quot;http://www.tibco.com/xmlns/sap/SAPConnectionResource/ZBAPI_BOOK__RFC_FUN&quot; version=&quot;2.0&quot;>&lt;xsl:template name=&quot;InvokeRFCBAPIinSAP-input&quot; match=&quot;/&quot;>&lt;tns:RequestInputType>&lt;tns1:RfcRequest>&lt;F_BOOK_ID>&lt;xsl:value-of select=&quot;11111&quot;/>&lt;/F_BOOK_ID>&lt;/tns1:RfcRequest>&lt;/tns:RequestInputType>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
+                            expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.tibco.com/namespaces/tnt/plugins/invokerequestresponse+0f957236-cb7b-4a6c-a9ff-1d2b267cadc9+Input&quot; xmlns:tns1=&quot;http://www.tibco.com/xmlns/sap/SAPConnectionResource/ZBAPI_BOOK__RFC_FUN&quot; version=&quot;2.0&quot;>&lt;xsl:template name=&quot;InvokeRFCBAPIinSAP-input&quot; match=&quot;/&quot;>&lt;tns:RequestInputType/>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
                     </tibex:inputBindings>
                     <tibex:config>
                         <bwext:BWActivity
@@ -792,14 +925,13 @@
                                     <type href="http://ns.tibco.com/bw/palette/sap#//InvokeRequestResponse"/>
                                     <value
                                     connectionReference="sapClientConnection"
-                                    operation="ZBAPI_BOOK__RFC_FUN"
-                                    schemaPath="/Testproject/Schemas/.SAP/SAPConnectionResource/functionModules/ZBAPI_BOOK__RFC_FUN.xsd" xsi:type="sap:InvokeRequestResponse">
+                                    operation="ZBAPI_BP_CREATE"
+                                    schemaPath="/Testproject/Schemas/.SAP/SAPConnectionResource/functionModules/ZBAPI_BP_CREATE.xsd" xsi:type="sap:InvokeRequestResponse">
                                     <internalConfig
                                     connRefName="SAPConnectionResource"
-                                    errorXsdElement="http://www.tibco.com/xmlns/sap/SAPConnectionResource/ZBAPI_BOOK__RFC_FUN##SAPSystemException"
-                                    inputXsdElement="http://www.tibco.com/xmlns/sap/SAPConnectionResource/ZBAPI_BOOK__RFC_FUN##RfcRequest"
-                                    minOccurs="true"
-                                    outputXsdElement="http://www.tibco.com/xmlns/sap/SAPConnectionResource/ZBAPI_BOOK__RFC_FUN##RfcResponse" xsi:type="internalization:InvokeRFC"/>
+                                    errorXsdElement="http://www.tibco.com/xmlns/sap/SAPConnectionResource/ZBAPI_BP_CREATE##SAPSystemException"
+                                    inputXsdElement="http://www.tibco.com/xmlns/sap/SAPConnectionResource/ZBAPI_BP_CREATE##RfcRequest"
+                                    outputXsdElement="http://www.tibco.com/xmlns/sap/SAPConnectionResource/ZBAPI_BP_CREATE##RfcResponse" xsi:type="internalization:InvokeRFC"/>
                                     </value>
                                 </properties>
                             </activityConfig>

@@ -4,17 +4,23 @@
 <target name="bw-runtime">
 <locations>
 
-<location path="/C:/BW650_Home/bw/palettes/sap/8.2//hotfix/runtime/plugins" type="Directory"/>
-<location path="/C:/BW650_Home/bw/palettes/sap/8.2//runtime/plugins" type="Directory"/>
+<location path="/D:/Tibco/BW_6_5_0_TESTONLY/bw/palettes/aepalette/1.4//hotfix/runtime/plugins" type="Directory"/>
+<location path="/D:/Tibco/BW_6_5_0_TESTONLY/bw/palettes/aepalette/1.4//runtime/plugins" type="Directory"/>
+<location path="/D:/Tibco/BW_6_5_0_TESTONLY/bw/palettes/ldap/7.2//hotfix/runtime/plugins" type="Directory"/>
+<location path="/D:/Tibco/BW_6_5_0_TESTONLY/bw/palettes/ldap/7.2//runtime/plugins" type="Directory"/>
+<location path="/D:/Tibco/BW_6_5_0_TESTONLY/bw/palettes/sap/8.2//hotfix/runtime/plugins" type="Directory"/>
+<location path="/D:/Tibco/BW_6_5_0_TESTONLY/bw/palettes/sap/8.2//runtime/plugins" type="Directory"/>
+<location path="/D:/Tibco/BW_6_5_0_TESTONLY/bw/palettes/swift/6.4//hotfix/runtime/plugins" type="Directory"/>
+<location path="/D:/Tibco/BW_6_5_0_TESTONLY/bw/palettes/swift/6.4//runtime/plugins" type="Directory"/>
 
 
-<location path="C:/BW650_Home/bw/6.5/system/hotfix/lib/common" type="Directory"/>
-<location path="C:/BW650_Home/bw/6.5/system/lib/common" type="Directory"/>
+<location path="D:/Tibco/BW_6_5_0_TESTONLY/bw/6.5/system/hotfix/lib/common" type="Directory"/>
+<location path="D:/Tibco/BW_6_5_0_TESTONLY/bw/6.5/system/lib/common" type="Directory"/>
 
-<location path="C:/BW650_Home/bw/6.5/system/hotfix/palettes" type="Directory"/>
-<location path="C:/BW650_Home/bw/6.5/system/palettes" type="Directory"/>
+<location path="D:/Tibco/BW_6_5_0_TESTONLY/bw/6.5/system/hotfix/palettes" type="Directory"/>
+<location path="D:/Tibco/BW_6_5_0_TESTONLY/bw/6.5/system/palettes" type="Directory"/>
 
-<location path="C:/BW650_Home/bw/6.5/system/hotfix/shared" type="Directory"/>
-<location path="C:/BW650_Home/bw/6.5/system/shared" type="Profile"/>
+<location path="D:/Tibco/BW_6_5_0_TESTONLY/bw/6.5/system/hotfix/shared" type="Directory"/>
+<location path="D:/Tibco/BW_6_5_0_TESTONLY/bw/6.5/system/shared" type="Profile"/>
 </locations>
 </target>
